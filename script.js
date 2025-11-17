@@ -82,13 +82,13 @@ document.querySelectorAll('.nav-link').forEach(link => {
         if (href && href.startsWith('#')) {
             e.preventDefault();
             const targetSection = document.querySelector(href);
-            
-            if (targetSection) {
-                const offsetTop = targetSection.offsetTop - 80;
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
+        
+        if (targetSection) {
+            const offsetTop = targetSection.offsetTop - 80;
+            window.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth'
+            });
             }
         }
     });
@@ -140,27 +140,127 @@ if (spine) {
     let currentX = 0;
     const ease = 0.2; // smoothing factor (higher = faster)
 
-    // Create a seamless loop by duplicating items once
+    // Create a seamless loop by duplicating items enough times to ensure coverage
     const originalChildren = Array.from(spine.children);
     const originalCount = originalChildren.length;
-    originalChildren.forEach(child => spine.appendChild(child.cloneNode(true)));
+    
+    // Duplicate multiple times to ensure complete coverage on all screen sizes
+    // This ensures there's always content visible during the loop transition
+    for (let i = 0; i < 3; i++) {
+        originalChildren.forEach(child => spine.appendChild(child.cloneNode(true)));
+    }
 
     // Width of one full set of vertebrae (loop length)
     const getLoopWidth = () => {
-        // measure first N items (original set)
-        let width = 0;
-        for (let i = 0; i < originalCount; i++) {
-            width += spine.children[i].getBoundingClientRect().width;
+        // Temporarily reset transform to measure accurately
+        const currentTransform = spine.style.transform;
+        spine.style.transform = 'translateX(0px)';
+        
+        // Force reflow to ensure positions are updated
+        void spine.offsetHeight;
+        
+        let measuredWidth = 0;
+        
+        // Method 1: Measure from first original to first duplicate (most accurate)
+        if (spine.children.length >= originalCount * 2) {
+            const firstOriginal = spine.children[0];
+            const firstDuplicate = spine.children[originalCount];
+            
+            const firstRect = firstOriginal.getBoundingClientRect();
+            const duplicateRect = firstDuplicate.getBoundingClientRect();
+            const spineRect = spine.getBoundingClientRect();
+            
+            const firstLeft = firstRect.left - spineRect.left;
+            const duplicateLeft = duplicateRect.left - spineRect.left;
+            measuredWidth = duplicateLeft - firstLeft;
         }
-        return width;
+        
+        // Method 2: If method 1 failed, measure from start of first to end of last original
+        if (measuredWidth <= 0 || isNaN(measuredWidth) || !isFinite(measuredWidth)) {
+            if (originalCount > 0) {
+                const firstOriginal = spine.children[0];
+                const lastOriginal = spine.children[originalCount - 1];
+                
+                const firstRect = firstOriginal.getBoundingClientRect();
+                const lastRect = lastOriginal.getBoundingClientRect();
+                const spineRect = spine.getBoundingClientRect();
+                
+                const firstLeft = firstRect.left - spineRect.left;
+                const lastRight = lastRect.right - spineRect.left;
+                measuredWidth = lastRight - firstLeft;
+            }
+        }
+        
+        // Method 3: Fallback - calculate manually
+        if (measuredWidth <= 0 || isNaN(measuredWidth) || !isFinite(measuredWidth)) {
+            const isMobile = window.innerWidth < 768;
+            let width = 0;
+            
+            for (let i = 0; i < originalCount; i++) {
+                const child = spine.children[i];
+                const childWidth = child.offsetWidth;
+                const computedStyle = window.getComputedStyle(child);
+                const marginLeft = parseFloat(computedStyle.marginLeft) || 0;
+                const marginRight = parseFloat(computedStyle.marginRight) || 0;
+                
+                if (isMobile) {
+                    // In mobile, negative margins create overlap
+                    // First vertebra: add full width
+                    // Subsequent vertebrae: add width minus the overlap
+                    if (i === 0) {
+                        width += childWidth;
+                    } else {
+                        // Each vertebra overlaps with the previous one
+                        // The overlap is the absolute value of the negative margin
+                        const overlapLeft = Math.abs(marginLeft);
+                        const overlapRight = Math.abs(marginRight);
+                        // Total overlap is the minimum of left and right negative margins
+                        const totalOverlap = Math.min(overlapLeft, overlapRight);
+                        width += childWidth - totalOverlap;
+                    }
+                } else {
+                    width += childWidth;
+                }
+            }
+            
+            measuredWidth = Math.max(width, 1);
+        }
+        
+        // Restore transform
+        spine.style.transform = currentTransform;
+        
+        return measuredWidth;
     };
 
     let loopWidth = 0;
     const updateBounds = () => {
-        loopWidth = getLoopWidth();
+        // Use requestAnimationFrame to ensure DOM is fully updated before measuring
+        requestAnimationFrame(() => {
+            const newLoopWidth = getLoopWidth();
+            // Only update if we got a valid measurement
+            if (newLoopWidth > 0 && !isNaN(newLoopWidth) && isFinite(newLoopWidth)) {
+                loopWidth = newLoopWidth;
+            } else {
+                // Retry after a short delay if measurement failed
+                setTimeout(() => {
+                    const retryWidth = getLoopWidth();
+                    if (retryWidth > 0 && !isNaN(retryWidth) && isFinite(retryWidth)) {
+                        loopWidth = retryWidth;
+                    }
+                }, 100);
+            }
+        });
     };
+    // Initial update after a short delay to ensure DOM is ready
+    setTimeout(updateBounds, 100);
     updateBounds();
     window.addEventListener('resize', updateBounds);
+    // Also update when page becomes visible (for mobile)
+    document.addEventListener('visibilitychange', () => {
+        if (!document.hidden) {
+            setTimeout(updateBounds, 50);
+        }
+    });
 
     // Only animate when section is in view
     let inView = false;
@@ -178,8 +278,26 @@ if (spine) {
         // Wrap using modulo to create infinite loop
         const diff = targetX - currentX;
         currentX += diff * ease;
-        const wrapped = loopWidth ? ((currentX % loopWidth) + loopWidth) % loopWidth : 0;
-        spine.style.transform = `translateX(${-wrapped}px)`;
+        
+        // Ensure loopWidth is valid before wrapping
+        if (loopWidth > 0) {
+            // Use modulo to wrap, ensuring positive value
+            // This creates a seamless infinite loop
+            let wrapped = currentX % loopWidth;
+            
+            // Ensure wrapped value is positive
+            if (wrapped < 0) {
+                wrapped = wrapped + loopWidth;
+            }
+            
+            // Ensure wrapped value is within valid range [0, loopWidth)
+            // Use Math.floor to avoid floating point precision issues
+            wrapped = wrapped % loopWidth;
+            
+            // Apply transform - negative because we're moving left
+            spine.style.transform = `translateX(${-wrapped}px)`;
+        }
+        
         rafId = requestAnimationFrame(animate);
     };
 
@@ -198,33 +316,72 @@ if (spine) {
 
 
 // ===== IMAGE SCROLL EFFECT =====
-function handleImageScroll() {
-    const aboutImage = document.querySelector('.about-image');
-    if (!aboutImage) {
-        console.log('About image not found');
-        return;
-    }
+// Use IntersectionObserver for better performance and mobile compatibility
+const aboutImage = document.querySelector('.about-image');
+if (aboutImage) {
+    let imageObserver = null;
     
-    const rect = aboutImage.getBoundingClientRect();
-    const windowHeight = window.innerHeight;
+    const setupImageObserver = () => {
+        // Si ya existe un observer, desconectarlo primero
+        if (imageObserver) {
+            imageObserver.disconnect();
+        }
+        
+        // Detectar si estamos en móvil para ajustar los umbrales
+        const isMobile = window.innerWidth < 768;
+        
+        // Configurar IntersectionObserver con umbrales adaptativos
+        imageObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Cuando la imagen está visible, añadir clase 'scrolled'
+                    aboutImage.classList.add('scrolled');
+                } else {
+                    // Cuando la imagen sale de vista, remover clase 'scrolled'
+                    aboutImage.classList.remove('scrolled');
+                }
+            });
+        }, {
+            // En móvil, usar un threshold más bajo para activar antes
+            // En desktop, usar un threshold más alto para activar cuando está más centrada
+            threshold: isMobile ? 0.3 : 0.5,
+            // Ajustar el rootMargin para controlar cuándo se activa
+            // En móvil, usar márgenes más pequeños para activar cuando está más visible
+            rootMargin: isMobile ? '-15% 0px -15% 0px' : '-30% 0px -30% 0px'
+        });
+        
+        imageObserver.observe(aboutImage);
+    };
     
-    // Activar cuando la imagen esté más abajo en la pantalla
-    const isInView = rect.top <= windowHeight * 0.3 && rect.bottom >= windowHeight * 0.7;
+    // Configurar inicialmente
+    setupImageObserver();
     
-    console.log('Scroll check:', { 
-        rectTop: Math.round(rect.top), 
-        rectBottom: Math.round(rect.bottom),
-        windowHeight: windowHeight, 
-        isInView: isInView,
-        hasScrolledClass: aboutImage.classList.contains('scrolled')
-    });
+    // Reconfigurar si cambia el tamaño de la ventana (útil para rotación de dispositivo)
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            setupImageObserver();
+        }, 250);
+    }, { passive: true });
     
-    if (isInView) {
-        aboutImage.classList.add('scrolled');
-        console.log('Added scrolled class');
-    } else {
-        aboutImage.classList.remove('scrolled');
-        console.log('Removed scrolled class');
+    // También mantener la función handleImageScroll para compatibilidad
+    // pero solo si IntersectionObserver no está disponible
+    if (!window.IntersectionObserver) {
+        function handleImageScroll() {
+            const rect = aboutImage.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            const isMobile = window.innerWidth < 768;
+            const threshold = isMobile ? 0.5 : 0.5;
+            const isInView = rect.top <= windowHeight * threshold && rect.bottom >= windowHeight * threshold;
+            
+            if (isInView) {
+                aboutImage.classList.add('scrolled');
+            } else {
+                aboutImage.classList.remove('scrolled');
+            }
+        }
+        window.addEventListener('scroll', handleImageScroll, { passive: true });
     }
 }
 
@@ -308,18 +465,5 @@ skipLink.addEventListener('blur', () => {
 });
 
 document.body.insertBefore(skipLink, document.body.firstChild);
-
-// Focus management for mobile menu
-navToggle.addEventListener('click', () => {
-    if (navMenu.classList.contains('active')) {
-        const firstLink = navMenu.querySelector('.nav-link');
-        if (firstLink) {
-            setTimeout(() => firstLink.focus(), 100);
-        }
-    }
-});
-
-// Add scroll listener for image effect
-window.addEventListener('scroll', handleImageScroll, { passive: true });
 
 console.log('Vertebra Studio - Landing page loaded successfully! 🚀');

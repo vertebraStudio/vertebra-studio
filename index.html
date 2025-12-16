@@ -3,24 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vertebra Studio</title>
-    <meta name="description" content="Vertebra Studio - Diseño UX/UI y desarrollo web moderno con foco en claridad, velocidad y detalle. Del concepto al lanzamiento, sin humo.">
-    <meta name="keywords" content="diseño UX, diseño UI, desarrollo web, landing page, diseño digital">
     
-    <!-- Open Graph -->
-    <meta property="og:title" content="Vertebra Studio - Diseño UX/UI y Desarrollo Web">
-    <meta property="og:description" content="Diseño que sostiene tu producto. UX/UI + Web moderna con foco en claridad, velocidad y detalle.">
+    <!-- Primary Meta Tags -->
+    <title>Vertebra Studio | Diseño UX/UI y Desarrollo Web en Madrid</title>
+    <meta name="title" content="Vertebra Studio | Diseño UX/UI y Desarrollo Web en Madrid">
+    <meta name="description" content="Estudio de diseño UX/UI y desarrollo web en Madrid. Creamos experiencias digitales que conectan con usuarios, desde el concepto al lanzamiento. Especialistas en diseño de producto, interfaces y desarrollo frontend moderno.">
+    <meta name="keywords" content="diseño UX, diseño UI, desarrollo web, diseño de producto, Madrid, España, diseño digital, frontend, experiencia de usuario, interfaces, diseño web profesional">
+    <meta name="author" content="Vertebra Studio">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Spanish">
+    <meta name="revisit-after" content="7 days">
+    <link rel="canonical" href="https://vertebrastudio.com">
+    
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://vertebrastudio.com">
+    <meta property="og:title" content="Vertebra Studio | Diseño UX/UI y Desarrollo Web en Madrid">
+    <meta property="og:description" content="Estudio de diseño UX/UI y desarrollo web en Madrid. Creamos experiencias digitales que conectan con usuarios, desde el concepto al lanzamiento.">
     <meta property="og:image" content="https://vertebrastudio.com/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:site_name" content="Vertebra Studio">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://vertebrastudio.com">
+    <meta property="twitter:title" content="Vertebra Studio | Diseño UX/UI y Desarrollo Web en Madrid">
+    <meta property="twitter:description" content="Estudio de diseño UX/UI y desarrollo web en Madrid. Creamos experiencias digitales que conectan con usuarios.">
+    <meta property="twitter:image" content="https://vertebrastudio.com/og-image.jpg">
+    
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Vertebra Studio",
+        "description": "Estudio de diseño UX/UI y desarrollo web en Madrid. Especialistas en diseño de producto, interfaces y desarrollo frontend moderno.",
+        "url": "https://vertebrastudio.com",
+        "logo": "https://vertebrastudio.com/logo.png",
+        "image": "https://vertebrastudio.com/og-image.jpg",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Madrid",
+            "addressCountry": "ES"
+        },
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+34-687-62-47-15",
+            "contactType": "customer service",
+            "email": "vertebra.creative@gmail.com",
+            "areaServed": "ES",
+            "availableLanguage": "Spanish"
+        },
+        "sameAs": [
+            "https://www.linkedin.com/in/danielortizmesa/"
+        ],
+        "areaServed": {
+            "@type": "Country",
+            "name": "España"
+        },
+        "serviceType": ["Diseño UX/UI", "Desarrollo Web", "Diseño de Producto", "Frontend Development"]
+    }
+    </script>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Bricolage+Grotesque:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css">
@@ -34,12 +88,10 @@
         <div class="nav-container">
             <a href="#home" class="nav-logo">Vertebra Studio</a>
             <ul class="nav-menu">
-                <li><a href="#servicios" class="nav-link">Servicios</a></li>
-                <li><a href="#trabajos" class="nav-link">Trabajos</a></li>
+                <li><a href="#proyectos" class="nav-link">Proyectos</a></li>
                 <li><a href="#sobre-mi" class="nav-link">Sobre mí</a></li>
-                <li><a href="#experiencia" class="nav-link">Experiencia</a></li>
-                <li><a href="#por-que-vertebra" class="nav-link">¿Por qué vertebra?</a></li>
-                <li><a href="#contacto" class="nav-link">Contacto</a></li>
+                <li class="nav-item-desktop-hidden"><a href="#por-que-vertebra" class="nav-link">Servicios</a></li>
+                <li><a href="contacto.html" class="nav-link">Contacto</a></li>
             </ul>
             <div class="nav-toggle" id="nav-toggle">
                 <span></span>
@@ -60,7 +112,7 @@
                 </div>
                 <div class="hero-image">
                     <div class="photo-placeholder">
-                        <img src="media/profile.jpeg" alt="Dani - Product Designer" class="profile-image">
+                        <img src="media/profile.jpeg" alt="Dani Ortiz - Diseñador UX/UI y Product Designer en Vertebra Studio, Madrid" class="profile-image">
                     </div>
                     <p class="hero-subtitle">Hola, soy Dani, diseñador UX/UI apasionado por crear experiencias digitales limpias, intuitivas y con personalidad.</p>
                 </div>
@@ -84,61 +136,12 @@
         </div>
     </section>
 
-    <!-- Servicios Section -->
-    <section id="servicios" class="section">
-        <div class="container">
-            <div class="services-layout">
-                <!-- Left Column - Services Overview -->
-                <div class="services-overview">
-                    <div class="services-tag">Servicios</div>
-                    <h2 class="services-title">Una mirada completa a lo que ofrecemos y cómo lo entregamos</h2>
-                    <p class="services-description">Una mirada completa a nuestros servicios y cómo los entregamos</p>
-                    <a href="#contacto" class="btn btn-primary services-cta">Contactar</a>
-                </div>
-                
-                <!-- Right Column - Service Cards -->
-                <div class="services-grid">
-                    <!-- UX Research -->
-                    <div class="service-card">
-                        <h3 class="service-title">UX Research</h3>
-                        <p class="service-description">Investigación profunda del usuario para entender necesidades, comportamientos y crear experiencias que realmente conecten.</p>
-                        <div class="service-arrow">→</div>
-                    </div>
-                    
-                    <!-- UI Design -->
-                    <div class="service-card">
-                        <h3 class="service-title">UI Design</h3>
-                        <p class="service-description">Diseño de interfaces intuitivas y atractivas que combinan estética y funcionalidad para una experiencia excepcional.</p>
-                        <div class="service-arrow">→</div>
-                    </div>
-                    
-                    <!-- Web Development -->
-                    <div class="service-card service-card-featured">
-                        <h3 class="service-title">Desarrollo Web</h3>
-                        <p class="service-description">Desarrollo frontend moderno y optimizado que convierte diseños en experiencias digitales rápidas y funcionales.</p>
-                        <div class="service-arrow">→</div>
-                    </div>
-                    
-                    <!-- Brand Strategy -->
-                    <div class="service-card">
-                        <h3 class="service-title">Estrategia de Marca</h3>
-                        <p class="service-description">Definición de identidad visual y estrategia de marca que refleje los valores y objetivos de tu negocio.</p>
-                        <div class="service-arrow">→</div>
-                    </div>
-                </div>
-            </div>
-            
-            
-        </div>
-    </section>
-
-    <!-- Trabajos Section -->
-    <section id="trabajos" class="section">
+    <!-- Proyectos Section -->
+    <section id="proyectos" class="section">
         <div class="container">
             <div class="services-layout">
                 <div class="services-overview">
-                    <div class="services-tag">Trabajos</div>
-                    <h2 class="services-title">Trabajos recientes</h2>
+                    <h2 class="services-title">Proyectos recientes</h2>
                     <p class="services-description">Proyectos que demuestran nuestro enfoque en resultados medibles y experiencias excepcionales.</p>
                 </div>
                 
@@ -147,27 +150,61 @@
             <!-- Proyectos en cuadrícula -->
             <div class="grid grid-3">
                 
-                <!-- Proyecto 2 -->
-                <div class="card">
+                <!-- Ansiada Calma -->
+                <a href="proyectos/ansiada-calma/ansiada-calma.html" class="card card-link">
                     <div class="project-image">
-                        <img src="proyectos/ansiada-calma/media/logo-ansiada-calma.png" alt="Ansiada Calma" class="project-img">
+                        <img src="proyectos/ansiada-calma/media/logo-ansiada-calma.png" alt="Proyecto Ansiada Calma - Diseño web para consulta de psicología por Vertebra Studio" class="project-img">
                     </div>
                     <div class="card-header">
-                        <h3 class="card-title">Ansiada Calma (Web para psicóloga)</h3>
+                        <h3 class="card-title">Ansiada Calma</h3>
                         <p class="card-subtitle">Diseño | Desarrollo web </p>
                     </div>
                     <div class="card-content">
                         <p class="project-description">Diseño y desarrollo completo de una web profesional para una consulta de psicología. Se creó una identidad visual cálida y cercana, centrada en transmitir confianza y bienestar emocional. La arquitectura de la información y los contenidos fueron diseñados para favorecer la claridad y la conversión de nuevos clientes.</p>
                     </div>
                     <div class="card-footer">
-                        <a href="proyectos/ansiada-calma/ansiada-calma.html" class="btn btn-secondary btn-full-width">Ver proyecto</a>
+                        <span class="btn btn-secondary btn-full-width">Ver proyecto</span>
                     </div>
-                </div>
+                </a>
                 
-                <!-- Proyecto 3 -->
-                <div class="card">
+                <!-- Equilibrio Consciente -->
+                <a href="proyectos/equilibrio-consciente/equilibrio-consciente.html" class="card card-link">
                     <div class="project-image">
-                        <img src="proyectos/tienda-feb/media/general.png" alt="Tienda FEB" class="project-img">
+                        <img src="media/equilibrioconsciente.jpeg" alt="Proyecto Equilibrio Consciente - Diseño web para consulta de psicología por Vertebra Studio" class="project-img">
+                    </div>
+                    <div class="card-header">
+                        <h3 class="card-title">Equilibrio Consciente</h3>
+                        <p class="card-subtitle">Diseño | Desarrollo web </p>
+                    </div>
+                    <div class="card-content">
+                        <p class="project-description">Diseño y desarrollo completo de una web profesional para una consulta de psicología. Se creó una identidad visual centrada en transmitir equilibrio, bienestar y crecimiento personal. La arquitectura de la información y los contenidos fueron diseñados para comunicar un enfoque más profundo y reflexivo sobre el bienestar psicológico.</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="btn btn-secondary btn-full-width">Ver proyecto</span>
+                    </div>
+                </a>
+                
+                <!-- Casi Divino -->
+                <a href="proyectos/casi-divino/casi-divino.html" class="card card-link">
+                    <div class="project-image">
+                        <img src="media/casidivino.jpg" alt="Proyecto Casi Divino - Web especializada en vino con ecommerce por Vertebra Studio" class="project-img">
+                    </div>
+                    <div class="card-header">
+                        <h3 class="card-title">Casi Divino (Web especializada en vino)</h3>
+                        <p class="card-subtitle">Diseño | Desarrollo web</p>
+                    </div>
+                    <div class="card-content">
+                        <p class="project-description">Web especializada en el vino con enfoque editorial y ecommerce. Identidad elegante, fotografía cuidada y fichas claras para guiar al usuario desde la inspiración hasta la compra.</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="btn btn-secondary btn-full-width">Ver proyecto</span>
+                    </div>
+                </a>
+                
+                <!-- Tienda FEB -->
+                <a href="proyectos/tienda-feb/tienda-feb.html" class="card card-link">
+                    <div class="project-image">
+                        <img src="proyectos/tienda-feb/media/general.png" alt="Proyecto Tienda FEB - Ecommerce Shopify para Federación Española de Baloncesto por Vertebra Studio" class="project-img">
                     </div>
                     <div class="card-header">
                         <h3 class="card-title">Tienda FEB</h3>
@@ -177,14 +214,14 @@
                         <p class="project-description">Diseño y estructuración de la tienda oficial de la Federación Española de Baloncesto, con el objetivo de mejorar la experiencia de compra y la identidad visual de la marca. Se trabajó la arquitectura de información, jerarquía de productos y coherencia con la identidad FEB, optimizando la conversión y la navegación en entorno Shopify.</p>
                     </div>
                     <div class="card-footer">
-                        <a href="proyectos/tienda-feb/tienda-feb.html" class="btn btn-secondary btn-full-width">Ver proyecto</a>
+                        <span class="btn btn-secondary btn-full-width">Ver proyecto</span>
                     </div>
-                </div>
+                </a>
                 
-                <!-- Proyecto 4 -->
-                <div class="card">
+                <!-- elektrico Club -->
+                <a href="proyectos/elektrico-club/elektrico-club.html" class="card card-link">
                     <div class="project-image">
-                        <img src="proyectos/elektrico-club/media/Group 1.png" alt="elektrico Club" class="project-img">
+                        <img src="proyectos/elektrico-club/media/Group 1.png" alt="Proyecto elektrico Club - Branding y dirección de arte para club musical por Vertebra Studio" class="project-img">
                     </div>
                     <div class="card-header">
                         <h3 class="card-title">elektrico Club</h3>
@@ -194,14 +231,14 @@
                         <p class="project-description">Creación y desarrollo de la identidad visual de un club y marca musical. Diseño de materiales gráficos, campañas publicitarias y experiencias temáticas orientadas a construir una comunidad sólida en torno a la música electrónica y la cultura urbana. Se abordó el proyecto desde la coherencia visual y la diferenciación estética.</p>
                     </div>
                     <div class="card-footer">
-                        <a href="proyectos/elektrico-club/elektrico-club.html" class="btn btn-secondary btn-full-width">Ver proyecto</a>
+                        <span class="btn btn-secondary btn-full-width">Ver proyecto</span>
                     </div>
-                </div>
+                </a>
                 
-                <!-- Proyecto 5 -->
-                <div class="card">
+                <!-- Acta Digital FEB -->
+                <a href="proyectos/acta-digital-feb/acta-digital-feb.html" class="card card-link">
                     <div class="project-image">
-                        <img src="proyectos/acta-digital-feb/media/acta-digital-portada.png" alt="Rediseño del Acta Digital FEB" class="project-img">
+                        <img src="proyectos/acta-digital-feb/media/acta-digital-portada.png" alt="Proyecto Rediseño Acta Digital FEB - UX/UI para herramienta de anotación deportiva por Vertebra Studio" class="project-img">
                     </div>
                     <div class="card-header">
                         <h3 class="card-title">Rediseño del Acta Digital FEB</h3>
@@ -211,14 +248,14 @@
                         <p class="project-description">Proyecto de rediseño integral de la herramienta oficial utilizada por anotadores y oficiales de mesa durante los partidos. Se redefinieron flujos críticos, jerarquías visuales y patrones de interacción para aumentar la eficiencia y reducir errores en tiempo real, aplicando principios de usabilidad y consistencia visual en entorno federativo.</p>
                     </div>
                     <div class="card-footer">
-                        <a href="proyectos/acta-digital-feb/acta-digital-feb.html" class="btn btn-secondary btn-full-width">Ver proyecto</a>
+                        <span class="btn btn-secondary btn-full-width">Ver proyecto</span>
                     </div>
-                </div>
+                </a>
                 
-                <!-- Proyecto 6 -->
-                <div class="card">
+                <!-- Brillo App -->
+                <a href="proyectos/brillo-app/brillo-app.html" class="card card-link">
                     <div class="project-image">
-                        <img src="proyectos/brillo-app/media/brillo-poster.png" alt="Brillo App" class="project-img">
+                        <img src="proyectos/brillo-app/media/brillo-poster.png" alt="Proyecto Brillo App - Diseño UX/UI de aplicación y revista digital cultural por Vertebra Studio" class="project-img">
                     </div>
                     <div class="card-header">
                         <h3 class="card-title">Brillo App</h3>
@@ -228,9 +265,9 @@
                         <p class="project-description">Concepto de aplicación y revista digital centrada en la escena urbana y cultural. Proyecto académico que explora la relación entre contenido, geolocalización y personalización de experiencia, integrando diseño editorial digital y patrones de exploración visual interactiva.</p>
                     </div>
                     <div class="card-footer">
-                        <a href="proyectos/brillo-app/brillo-app.html" class="btn btn-secondary btn-full-width">Ver proyecto</a>
+                        <span class="btn btn-secondary btn-full-width">Ver proyecto</span>
                     </div>
-                </div>
+                </a>
                 
                 <!-- Próximamente -->
                 <div class="card card-coming-soon">
@@ -244,10 +281,9 @@
                         <p class="card-subtitle">Más proyectos en camino</p>
                     </div>
                     <div class="card-content">
-                        <p class="project-description">Estoy trabajando en nuevos proyectos que pronto estarán disponibles aquí. Mantente atento para descubrir más trabajos.</p>
+                        <p class="project-description">Estoy trabajando en nuevos proyectos que pronto estarán disponibles aquí. Mantente atento para descubrir más proyectos.</p>
                     </div>
                 </div>
-            </div>
             </div>
         </div>
     </section>
@@ -269,159 +305,99 @@
                 
                 <div class="text-center">
                     <div class="about-image">
-                        <img src="media/yo-rectangle.png" alt="Foto profesional" class="profile-image profile-image-bw">
-                        <img src="media/yo-color.png" alt="Foto profesional" class="profile-image profile-image-color">
+                        <img src="media/yo-rectangle.png" alt="Dani Ortiz - Diseñador UX/UI y fundador de Vertebra Studio, especialista en diseño de producto y desarrollo web" class="profile-image profile-image-bw">
+                        <img src="media/yo-color.png" alt="Dani Ortiz - Diseñador UX/UI y fundador de Vertebra Studio, especialista en diseño de producto y desarrollo web" class="profile-image profile-image-color">
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Experiencia Section -->
-    <section id="experiencia" class="section">
-        <div class="container">
-            <div class="experience-layout">
-                <div class="experience-overview">
-                    <div class="experience-tag">Experiencia</div>
-                    <h2 class="experience-title">Un recorrido de crecimiento creativo y profesional</h2>
-                </div>
-                
-                <div class="experience-summary">
-                    <p>Un resumen anual que captura mi evolución creativa y desarrollo profesional a lo largo de los años.</p>
-                </div>
-            </div>
-            
-            <div class="experience-timeline">
-                <div class="experience-item">
-                    <div class="experience-content">
-                        <h3 class="experience-role">Diseñador UX/UI en Federación Española de Baloncesto</h3>
-                        <p class="experience-description">Diseño y desarrollo de experiencias digitales, abarcando desde la conceptualización y prototipado de interfaces hasta la mejora continua de productos internos y externos. Enfocado en optimizar procesos, modernizar plataformas y aplicar innovación tecnológica para mejorar la interacción y eficiencia de los distintos usuarios del ecosistema FEB.</p>
-                    </div>
-                    <div class="experience-date">2025 - Ahora</div>
-                </div>
-                
-                <div class="experience-item">
-                    <div class="experience-content">
-                        <h3 class="experience-role">Diseñador UX/UI en elektrico club</h3>
-                        <p class="experience-description">Desarrollo de la identidad y comunicación visual de elektrico Club, combinando diseño, estrategia y experiencia de marca. Enfocado en la creación de eventos inmersivos que conectan música, estética y narrativa, junto con la gestión de campañas publicitarias orientadas a potenciar el alcance, la asistencia y la fidelización del público.</p>
-                    </div>
-                    <div class="experience-date">2023 - 2025</div>
-                    </div>
-                    
-                <div class="experience-item">
-                    <div class="experience-content">
-                        <h3 class="experience-role">Diseñador Gráfico Freelance</h3>
-                        <p class="experience-description">Diseño de identidad visual y materiales gráficos para marcas y proyectos de distintos sectores. Enfoque en transmitir valores y personalidad a través de soluciones visuales coherentes, combinando creatividad, estrategia y atención al detalle para fortalecer la presencia y comunicación de cada cliente.</p>
-                    </div>
-                    <div class="experience-date">2023 - 2024</div>
-                </div>
-                
-            </div>
-        </div>
-    </section>
-
 
     <!-- ¿Por qué vertebra? Section -->
     <section id="por-que-vertebra" class="section">
         <div class="container">
             <div class="services-layout">
                 <div class="services-overview">
-                    <div class="services-tag">¿Por qué vertebra?</div>
-                    <h2 class="services-title">El nombre que define el enfoque</h2>
+                    <h2 class="services-title">Nuestros servicios</h2>
+                    <p class="services-description">El nombre que define el enfoque</p>
                     
                     <div class="why-vertebra-text-content">
-                        <p class="why-vertebra-paragraph">Llamé a mi estudio Vertebra porque creo que cada proyecto tiene su propia columna vertebral.</p>
                         
-                        <p class="why-vertebra-paragraph">Cada parte: investigación, diseño, desarrollo, es una vértebra. Por sí sola puede parecer pequeña, pero juntas dan soporte y movimiento al proyecto.</p>
+                        <p class="why-vertebra-paragraph">Cada parte de un proyecto: investigación, diseño, desarrollo, es una vértebra. Por sí sola puede parecer pequeña, pero juntas dan soporte y movimiento.</p>
                         
-                        <p class="why-vertebra-paragraph">En Vertebra Studio creo en construir desde dentro, con sentido y conexión.</p>
+                        <p class="why-vertebra-paragraph">En Vertebra Studio creemos en construir desde dentro, con sentido y conexión.</p>
                         
-                        <p class="why-vertebra-paragraph">Porque cuando cada vértebra está en su sitio, el proyecto se mantiene de pie.</p>
+                        <p class="why-vertebra-paragraph">Porque cuando cada vértebra está en su sitio, el proyecto se mantiene en pie.</p>
                     </div>
                 </div>
                 
-                <!-- Right Column - Project Components Cards -->
+                <!-- Right Column - Service Cards -->
                 <div class="services-grid">
-                    <!-- Investigación -->
+                    <!-- UX Research -->
                     <div class="service-card">
-                        <h3 class="service-title">Investigación</h3>
-                        <p class="service-description">Entendemos el problema, analizamos el contexto y definimos las necesidades reales del usuario.</p>
-                        <div class="service-arrow">→</div>
+                        <h3 class="service-title">UX Research</h3>
+                        <p class="service-description">Investigación profunda del usuario para entender necesidades, comportamientos y crear experiencias que realmente conecten.</p>
                     </div>
                     
-                    <!-- Diseño -->
+                    <!-- UI Design -->
                     <div class="service-card">
-                        <h3 class="service-title">Diseño</h3>
-                        <p class="service-description">Le damos forma visual y estructural, creando interfaces que comunican y guían de forma intuitiva.</p>
-                        <div class="service-arrow">→</div>
+                        <h3 class="service-title">UI Design</h3>
+                        <p class="service-description">Diseño de interfaces intuitivas y atractivas que combinan estética y funcionalidad para una experiencia excepcional.</p>
                     </div>
                     
-                    <!-- Desarrollo -->
+                    <!-- Web Development -->
                     <div class="service-card service-card-featured">
-                        <h3 class="service-title">Desarrollo</h3>
-                        <p class="service-description">Convertimos el diseño en código funcional, optimizado y preparado para crecer.</p>
-                        <div class="service-arrow">→</div>
+                        <h3 class="service-title">Desarrollo Web</h3>
+                        <p class="service-description">Desarrollo frontend moderno y optimizado que convierte diseños en experiencias digitales rápidas y funcionales.</p>
                     </div>
                     
-                    <!-- Optimización -->
+                    <!-- Brand Strategy -->
                     <div class="service-card">
-                        <h3 class="service-title">Optimización</h3>
-                        <p class="service-description">Medimos, iteramos y mejoramos continuamente para asegurar que todo funcione como debe.</p>
-                        <div class="service-arrow">→</div>
+                        <h3 class="service-title">Estrategia de Marca</h3>
+                        <p class="service-description">Definición de identidad visual y estrategia de marca que refleje los valores y objetivos de tu negocio.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contacto Section -->
-    <section id="contacto" class="section">
-        <div class="container">
-            <div class="contact-header">
-                <div class="contact-tag">Contacto</div>
-                <div class="contact-content">
-                    <div class="contact-text">
-                        <h2 class="contact-title">¿Conectamos?</h2>
-                        <p class="contact-subtitle">Hagamos de tu idea una experiencia digital excepcional</p>
-            </div>
-            
-                    <div class="contact-info">
-                        <div class="contact-items-row">
-                            <div class="contact-item">
-                                <h3 class="contact-info-title">Email</h3>
-                                <p class="contact-info-text">dortizmesa@gmail.com</p>
-                        </div>
-                        
-                            <div class="contact-item">
-                                <h3 class="contact-info-title">Teléfono</h3>
-                                <p class="contact-info-text">+34 687 624 715</p>
-                        </div>
-                        </div>
-                        
-                        <a href="https://wa.me/34687624715" target="_blank" class="whatsapp-button">
-                            <img src="media/whatsapp-icon.png" alt="WhatsApp" class="whatsapp-icon">
-                            O si lo prefieres, hablamos por WhatsApp
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-        </div>
-    </section>
-
-    <!-- Footer -->
+    <!-- Footer con Contacto -->
     <footer id="footer" class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section footer-brand">
                     <div class="footer-logo">
                         <span class="logo-text">Vertebra Studio</span>
+                    </div>
+                    <p class="footer-description">Creado con café, código y muchas ganas de diseñar.</p>
                 </div>
-                    <p class="footer-description">Creado con café, código y muchas ganas de diseñar.
-                        
+            </div>
+            
+            <!-- Contacto integrado en footer -->
+            <div class="contact-minimal">
+                <div class="contact-minimal-column">
+                    <p class="contact-minimal-label">Contacto</p>
+                    <a href="mailto:vertebra.creative@gmail.com" class="contact-minimal-value contact-minimal-link">
+                        vertebra.creative@gmail.com
+                    </a>
+                    <a href="tel:+34687624715" class="contact-minimal-value contact-minimal-link">
+                        +34 687 62 47 15
+                    </a>
                 </div>
-                
-                
+
+                <div class="contact-minimal-column">
+                    <p class="contact-minimal-label">Ubicación</p>
+                    <p class="contact-minimal-value">Madrid, España</p>
+                </div>
+
+                <div class="contact-minimal-column">
+                    <p class="contact-minimal-label">Social</p>
+                    <div class="contact-minimal-links">
+                        <a href="https://www.linkedin.com/in/danielortizmesa/" target="_blank" class="contact-minimal-link">
+                            LinkedIn ↗
+                        </a>
+                    </div>
+                </div>
             </div>
             
             <div class="footer-bottom">

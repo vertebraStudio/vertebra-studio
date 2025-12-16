@@ -3,23 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda FEB - Proyecto | Vertebra Studio</title>
-    <meta name="description" content="Diseño y estructuración de la tienda oficial de la Federación Española de Baloncesto, optimizando la experiencia de compra y la identidad visual de la marca.">
-    <meta name="keywords" content="diseño UX, diseño UI, Shopify, e-commerce, FEB, baloncesto">
     
-    <!-- Open Graph -->
-    <meta property="og:title" content="Tienda FEB - Proyecto | Vertebra Studio">
-    <meta property="og:description" content="Diseño y estructuración de la tienda oficial de la Federación Española de Baloncesto, optimizando la experiencia de compra y la identidad visual de la marca.">
+    <!-- Primary Meta Tags -->
+    <title>Tienda FEB - Ecommerce Shopify para Federación Española de Baloncesto | Vertebra Studio</title>
+    <meta name="title" content="Tienda FEB - Ecommerce Shopify para Federación Española de Baloncesto | Vertebra Studio">
+    <meta name="description" content="Diseño y estructuración de la tienda oficial de la Federación Española de Baloncesto en Shopify. Optimización de experiencia de compra, identidad visual y conversión. Proyecto realizado por Vertebra Studio.">
+    <meta name="keywords" content="diseño Shopify, ecommerce FEB, tienda online baloncesto, diseño UX ecommerce, diseño UI Shopify, ecommerce España, diseño web Madrid">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://vertebrastudio.com/proyectos/tienda-feb">
+    
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://vertebrastudio.com/proyectos/tienda-feb">
+    <meta property="og:title" content="Tienda FEB - Ecommerce Shopify para Federación Española de Baloncesto | Vertebra Studio">
+    <meta property="og:description" content="Diseño y estructuración de la tienda oficial de la Federación Española de Baloncesto en Shopify. Optimización de experiencia de compra e identidad visual.">
+    <meta property="og:image" content="https://vertebrastudio.com/proyectos/tienda-feb/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="es_ES">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://vertebrastudio.com/proyectos/tienda-feb">
+    <meta property="twitter:title" content="Tienda FEB - Ecommerce Shopify para Federación Española de Baloncesto | Vertebra Studio">
+    <meta property="twitter:description" content="Diseño y estructuración de la tienda oficial de la Federación Española de Baloncesto en Shopify.">
+    <meta property="twitter:image" content="https://vertebrastudio.com/proyectos/tienda-feb/og-image.jpg">
+    
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "CreativeWork",
+        "name": "Tienda FEB - Ecommerce Shopify",
+        "description": "Diseño y estructuración de la tienda oficial de la Federación Española de Baloncesto, optimizando la experiencia de compra y la identidad visual de la marca.",
+        "creator": {
+            "@type": "Organization",
+            "name": "Vertebra Studio",
+            "url": "https://vertebrastudio.com"
+        },
+        "about": {
+            "@type": "Thing",
+            "name": "Diseño ecommerce Shopify para federación deportiva"
+        },
+        "keywords": "diseño UX, diseño UI, Shopify, e-commerce, FEB, baloncesto"
+    }
+    </script>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Bricolage+Grotesque:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../../styles.css">
@@ -34,12 +71,11 @@
         <div class="nav-container">
             <a href="../../index.html" class="nav-logo">Vertebra Studio</a>
             <ul class="nav-menu">
-                <li><a href="../../index.html#servicios" class="nav-link">Servicios</a></li>
-                <li><a href="../../index.html#trabajos" class="nav-link">Trabajos</a></li>
+                <li class="nav-item-desktop-hidden"><a href="../../index.html#servicios" class="nav-link">Servicios</a></li>
+                <li><a href="../../index.html#proyectos" class="nav-link">Proyectos</a></li>
                 <li><a href="../../index.html#sobre-mi" class="nav-link">Sobre mí</a></li>
-                <li><a href="../../index.html#experiencia" class="nav-link">Experiencia</a></li>
-                <li><a href="../../index.html#por-que-vertebra" class="nav-link">¿Por qué vertebra?</a></li>
-                <li><a href="../../index.html#contacto" class="nav-link">Contacto</a></li>
+                <li class="nav-item-desktop-hidden"><a href="../../index.html#por-que-vertebra" class="nav-link">¿Por qué vertebra?</a></li>
+                <li><a href="../../contacto.html" class="nav-link">Contacto</a></li>
             </ul>
             <div class="nav-toggle" id="nav-toggle">
                 <span></span>
@@ -54,9 +90,9 @@
         <div class="container">
             <div class="project-hero-content">
                 <div class="project-breadcrumb">
-                    <a href="../../index.html#trabajos" class="breadcrumb-link">
+                    <a href="../../index.html#proyectos" class="breadcrumb-link">
                         <i data-lucide="arrow-left"></i>
-                        Volver a trabajos
+                        Volver a proyectos
                     </a>
                 </div>
             </div>
@@ -67,7 +103,6 @@
     <section class="project-intro">
         <div class="container">
             <div class="project-header">
-                <div class="project-tag">Proyecto</div>
                 <h1 class="project-title">Tienda FEB</h1>
                 <p class="project-subtitle">Diseño UX/UI | Shopify</p>
                 
@@ -174,41 +209,7 @@
         </div>
     </section>
 
-    <!-- Contacto Section -->
-    <section id="contacto" class="section">
-        <div class="container">
-            <div class="contact-header">
-                <div class="contact-tag">Contacto</div>
-                <div class="contact-content">
-                    <div class="contact-text">
-                        <h2 class="contact-title">¿Conectamos?</h2>
-                        <p class="contact-subtitle">Hagamos de tu idea una experiencia digital excepcional</p>
-                    </div>
-                    
-                    <div class="contact-info">
-                        <div class="contact-items-row">
-                            <div class="contact-item">
-                                <h3 class="contact-info-title">Email</h3>
-                                <p class="contact-info-text">dortizmesa@gmail.com</p>
-                            </div>
-                            
-                            <div class="contact-item">
-                                <h3 class="contact-info-title">Teléfono</h3>
-                                <p class="contact-info-text">+34 687 624 715</p>
-                            </div>
-                        </div>
-                        
-                        <a href="https://wa.me/34687624715" target="_blank" rel="noopener noreferrer" class="whatsapp-button">
-                            <img src="../../media/whatsapp-icon.png" alt="WhatsApp" class="whatsapp-icon">
-                            O si lo prefieres, hablamos por WhatsApp
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
+    <!-- Footer con Contacto -->
     <footer id="footer" class="footer">
         <div class="container">
             <div class="footer-content">
@@ -217,6 +218,33 @@
                         <span class="logo-text">Vertebra Studio</span>
                     </div>
                     <p class="footer-description">Creado con café, código y muchas ganas de diseñar.</p>
+                </div>
+            </div>
+            
+            <!-- Contacto integrado en footer -->
+            <div class="contact-minimal">
+                <div class="contact-minimal-column">
+                    <p class="contact-minimal-label">Contacto</p>
+                    <a href="mailto:vertebra.creative@gmail.com" class="contact-minimal-value contact-minimal-link">
+                        vertebra.creative@gmail.com
+                    </a>
+                    <a href="tel:+34687624715" class="contact-minimal-value contact-minimal-link">
+                        +34 687 62 47 15
+                    </a>
+                </div>
+
+                <div class="contact-minimal-column">
+                    <p class="contact-minimal-label">Ubicación</p>
+                    <p class="contact-minimal-value">Madrid, España</p>
+                </div>
+
+                <div class="contact-minimal-column">
+                    <p class="contact-minimal-label">Social</p>
+                    <div class="contact-minimal-links">
+                        <a href="https://www.linkedin.com/in/danielortizmesa/" target="_blank" class="contact-minimal-link">
+                            LinkedIn ↗
+                        </a>
+                    </div>
                 </div>
             </div>
             

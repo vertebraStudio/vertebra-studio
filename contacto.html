@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>Contacto - Vertebra Studio | Diseño UX/UI y Desarrollo Web en Madrid</title>
+    <meta name="title" content="Contacto - Vertebra Studio | Diseño UX/UI y Desarrollo Web en Madrid">
+    <meta name="description" content="Contacta con Vertebra Studio. Estudio de diseño UX/UI y desarrollo web en Madrid. Email: vertebra.creative@gmail.com | Teléfono: +34 687 62 47 15">
+    <meta name="keywords" content="contacto diseño UX, contacto diseño UI, desarrollo web Madrid, contacto diseñador, estudio diseño Madrid">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://vertebrastudio.com/contacto">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://vertebrastudio.com/contacto">
+    <meta property="og:title" content="Contacto - Vertebra Studio | Diseño UX/UI y Desarrollo Web en Madrid">
+    <meta property="og:description" content="Contacta con Vertebra Studio. Estudio de diseño UX/UI y desarrollo web en Madrid.">
+    <meta property="og:image" content="https://vertebrastudio.com/og-image.jpg">
+    <meta property="og:locale" content="es_ES">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://vertebrastudio.com/contacto">
+    <meta property="twitter:title" content="Contacto - Vertebra Studio | Diseño UX/UI y Desarrollo Web en Madrid">
+    <meta property="twitter:description" content="Contacta con Vertebra Studio. Estudio de diseño UX/UI y desarrollo web en Madrid.">
+    <meta property="twitter:image" content="https://vertebrastudio.com/og-image.jpg">
+    
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "name": "Contacto - Vertebra Studio",
+        "description": "Página de contacto de Vertebra Studio, estudio de diseño UX/UI y desarrollo web en Madrid",
+        "url": "https://vertebrastudio.com/contacto",
+        "mainEntity": {
+            "@type": "Organization",
+            "name": "Vertebra Studio",
+            "email": "vertebra.creative@gmail.com",
+            "telephone": "+34-687-62-47-15",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Madrid",
+                "addressCountry": "ES"
+            }
+        }
+    }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Bricolage+Grotesque:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Three.js -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+    <script type="module">
+        import * as THREE from 'three';
+        import { STLLoader } from 'three/addons/loaders/STLLoader.js';
+        
+        window.THREE = THREE;
+        window.STLLoader = STLLoader;
+    </script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body class="contact-page-body">
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Vertebra Studio</a>
+            <ul class="nav-menu">
+                <li class="nav-item-desktop-hidden"><a href="index.html#servicios" class="nav-link">Servicios</a></li>
+                <li><a href="index.html#proyectos" class="nav-link">Proyectos</a></li>
+                <li><a href="index.html#sobre-mi" class="nav-link">Sobre mí</a></li>
+                <li class="nav-item-desktop-hidden"><a href="index.html#por-que-vertebra" class="nav-link">¿Por qué vertebra?</a></li>
+                <li><a href="contacto.html" class="nav-link">Contacto</a></li>
+            </ul>
+            <div class="nav-toggle" id="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contact Details Section -->
+    <section class="contact-page-details">
+        <!-- 3D Background -->
+        <div class="contact-page-3d-container">
+            <div id="vertebra-3d"></div>
+        </div>
+        
+        <div class="container">
+            <div class="contact-page-layout">
+                <div class="contact-page-content">
+                    <div class="contact-page-grid">
+                        <div class="contact-page-block">
+                            <p class="contact-page-label">Contacto</p>
+                            <a href="mailto:vertebra.creative@gmail.com" class="contact-page-value contact-page-link">
+                                vertebra.creative@gmail.com
+                            </a>
+                            <a href="tel:+34687624715" class="contact-page-value contact-page-link">
+                                +34 687 62 47 15
+                            </a>
+                        </div>
+
+                        <div class="contact-page-block">
+                            <p class="contact-page-label">Ubicación</p>
+                            <p class="contact-page-value">Madrid, España</p>
+                        </div>
+
+                        <div class="contact-page-block">
+                            <p class="contact-page-label">Social</p>
+                            <div class="contact-page-social-links">
+                                <a href="https://www.linkedin.com/in/danielortizmesa/" target="_blank" rel="noopener noreferrer" class="contact-page-link contact-page-social-link">
+                                    LinkedIn <span class="contact-page-link-arrow">→</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer" class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section footer-brand">
+                    <div class="footer-logo">
+                        <span class="logo-text">Vertebra Studio</span>
+                    </div>
+                    <p class="footer-description">Creado con café, código y muchas ganas de diseñar.</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year">2024</span> Vertebra Studio. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+    
+    <!-- Initialize Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+    
+    <!-- Three.js Vertebra Animation -->
+    <script type="module">
+        import * as THREE from 'three';
+        import { STLLoader } from 'three/addons/loaders/STLLoader.js';
+        
+        // Initialize Three.js scene
+        const container = document.getElementById('vertebra-3d');
+        if (container) {
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            container.appendChild(renderer.domElement);
+            
+            // Lighting
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+            scene.add(ambientLight);
+            
+            const directionalLight1 = new THREE.DirectionalLight(0xffffff, 0.8);
+            directionalLight1.position.set(5, 5, 5);
+            scene.add(directionalLight1);
+            
+            const directionalLight2 = new THREE.DirectionalLight(0xffffff, 0.4);
+            directionalLight2.position.set(-5, -5, -5);
+            scene.add(directionalLight2);
+            
+            // Load STL model
+            const loader = new STLLoader();
+            let mesh = null;
+            let orbitAngle = 0;
+            const orbitRadius = 0.02; // Very narrow orbit radius
+            
+            loader.load('3D/L3_vertebra.stl', function(geometry) {
+                const material = new THREE.MeshPhongMaterial({ 
+                    color: 0xffffff,
+                    shininess: 100,
+                    specular: 0x222222
+                });
+                
+                mesh = new THREE.Mesh(geometry, material);
+                
+                // Center and scale the model
+                geometry.computeBoundingBox();
+                const center = geometry.boundingBox.getCenter(new THREE.Vector3());
+                const size = geometry.boundingBox.getSize(new THREE.Vector3());
+                
+                const maxDim = Math.max(size.x, size.y, size.z);
+                const scale = 2.5 / maxDim;
+                mesh.scale.multiplyScalar(scale);
+                
+                // Store original position (centered)
+                mesh.userData.originalX = -center.x * scale;
+                mesh.userData.originalY = -center.y * scale;
+                mesh.userData.originalZ = -center.z * scale;
+                
+                scene.add(mesh);
+                
+                // Position camera further back to keep vertebra always in view
+                camera.position.set(0, 0, 6);
+                camera.lookAt(0, 0, 0);
+                
+                // Store initial camera position
+                camera.userData.initialPosition = camera.position.clone();
+            }, undefined, function(error) {
+                console.error('Error loading STL:', error);
+            });
+            
+            // Animation loop
+            function animate() {
+                requestAnimationFrame(animate);
+                
+                // Rotate the mesh if it's loaded (spin on its own center with narrow orbit)
+                if (mesh) {
+                    // Combine rotations on multiple axes for natural movement
+                    mesh.rotation.y += 0.003; // Main vertical rotation
+                    mesh.rotation.x += 0.0015; // Subtle tilt
+                    mesh.rotation.z += 0.0008; // Very subtle roll
+                    
+                    // Very narrow circular orbit
+                    orbitAngle += 0.004;
+                    mesh.position.x = mesh.userData.originalX + Math.cos(orbitAngle) * orbitRadius;
+                    mesh.position.z = mesh.userData.originalZ + Math.sin(orbitAngle) * orbitRadius;
+                    mesh.position.y = mesh.userData.originalY + Math.sin(orbitAngle * 1.5) * (orbitRadius * 0.5);
+                    
+                    // Always keep camera looking at the center (0, 0, 0)
+                    camera.lookAt(0, 0, 0);
+                }
+                
+                renderer.render(scene, camera);
+            }
+            
+            animate();
+            
+            // Handle window resize
+            function handleResize() {
+                const width = container.clientWidth;
+                const height = container.clientHeight;
+                camera.aspect = width / height;
+                camera.updateProjectionMatrix();
+                renderer.setSize(width, height);
+            }
+            
+            window.addEventListener('resize', handleResize);
+        }
+    </script>
+</body>
+</html>
+

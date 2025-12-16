@@ -405,6 +405,56 @@ document.querySelectorAll('.card, .section-header, .hero-text').forEach(el => {
     observer.observe(el);
 });
 
+// ===== PROYECTOS CAROUSEL (home) =====
+const projectsTrack = document.querySelector('.projects-track');
+const projectCards = document.querySelectorAll('.project-card');
+const projectsPrev = document.querySelector('.projects-prev');
+const projectsNext = document.querySelector('.projects-next');
+
+if (projectsTrack && projectCards.length) {
+    let currentPage = 0;
+    const cardsPerViewDesktop = 3;
+
+    const getCardsPerView = () => {
+        if (window.innerWidth < 640) return 1;
+        if (window.innerWidth < 1024) return 2;
+        return cardsPerViewDesktop;
+    };
+
+    const updateCarousel = () => {
+        const cardsPerView = getCardsPerView();
+        const totalPages = Math.max(1, Math.ceil(projectCards.length / cardsPerView));
+        currentPage = Math.min(currentPage, totalPages - 1);
+
+        const wrapper = document.querySelector('.projects-carousel-wrapper');
+        const width = wrapper ? wrapper.offsetWidth : 0;
+        const offset = -currentPage * width;
+        projectsTrack.style.transform = `translateX(${offset}px)`;
+    };
+
+    const goNext = () => {
+        const totalPages = Math.max(1, Math.ceil(projectCards.length / getCardsPerView()));
+        currentPage = (currentPage + 1) % totalPages;
+        updateCarousel();
+    };
+
+    const goPrev = () => {
+        const totalPages = Math.max(1, Math.ceil(projectCards.length / getCardsPerView()));
+        currentPage = (currentPage - 1 + totalPages) % totalPages;
+        updateCarousel();
+    };
+
+    if (projectsNext) projectsNext.addEventListener('click', goNext);
+    if (projectsPrev) projectsPrev.addEventListener('click', goPrev);
+
+    window.addEventListener('resize', () => {
+        updateCarousel();
+    });
+
+    // Inicializar
+    updateCarousel();
+}
+
 
 // ===== UTILITIES =====
 // Update current year
@@ -465,5 +515,362 @@ skipLink.addEventListener('blur', () => {
 });
 
 document.body.insertBefore(skipLink, document.body.firstChild);
+
+// ===== PARALLAX EFFECT FOR HERO BACKGROUND GRADIENT =====
+const heroBg = document.querySelector('.hero-bg');
+let parallaxTicking = false;
+
+const updateParallax = () => {
+    if (!heroBg) {
+        parallaxTicking = false;
+        return;
+    }
+    
+    const scrolled = window.pageYOffset;
+    const heroSection = document.querySelector('.hero');
+    
+    if (heroSection) {
+        const heroTop = heroSection.offsetTop;
+        const heroHeight = heroSection.offsetHeight;
+        const windowHeight = window.innerHeight;
+        
+        // Only apply parallax when hero is in view
+        if (scrolled < heroTop + heroHeight && scrolled + windowHeight > heroTop) {
+            // Calculate offset based on scroll (exaggerated movement)
+            const parallaxSpeed = 0.25;
+            const offset = (scrolled - heroTop) * parallaxSpeed;
+            
+            // Update gradient center positions
+            const baseX1 = 20;
+            const baseX2 = 15;
+            const baseY = 50;
+            
+            // Move gradient center more noticeably based on scroll
+            const newX1 = baseX1 + (offset * 0.2);
+            const newX2 = baseX2 + (offset * 0.2);
+            const newY = baseY + (offset * 0.12);
+            
+            // Usar valores reducidos en móvil
+            const isMobile = window.innerWidth <= 768;
+            const isSmallMobile = window.innerWidth <= 640;
+            
+            let opacity1, opacity2, opacity3, opacity4, opacity5, opacity6;
+            
+            if (isSmallMobile) {
+                // Valores muy reducidos para móviles pequeños
+                opacity1 = 0.02;
+                opacity2 = 0.015;
+                opacity3 = 0.015;
+                opacity4 = 0.01;
+                opacity5 = 0.008;
+            } else if (isMobile) {
+                // Valores reducidos para tablets
+                opacity1 = 0.03;
+                opacity2 = 0.02;
+                opacity3 = 0.025;
+                opacity4 = 0.018;
+                opacity5 = 0.015;
+            } else {
+                // Valores normales para desktop
+                opacity1 = 0.12;
+                opacity2 = 0.08;
+                opacity3 = 0.10;
+                opacity4 = 0.07;
+                opacity5 = 0.06;
+            }
+            
+            heroBg.style.backgroundImage = `
+                radial-gradient(ellipse 800px 1200px at ${newX1}% ${newY}%, rgba(37, 99, 235, ${opacity1}) 0%, rgba(124, 58, 237, ${opacity2}) 40%, transparent 70%),
+                radial-gradient(ellipse 1200px 1800px at ${newX2}% ${newY}%, rgba(236, 72, 153, ${opacity3}) 0%, rgba(168, 85, 247, ${opacity4}) 35%, rgba(59, 130, 246, ${opacity5}) 60%, transparent 85%)
+            `;
+        } else {
+            // Reset to original position when out of view
+            const isMobile = window.innerWidth <= 768;
+            const isSmallMobile = window.innerWidth <= 640;
+            
+            let opacity1, opacity2, opacity3, opacity4, opacity5;
+            
+            if (isSmallMobile) {
+                opacity1 = 0.02;
+                opacity2 = 0.015;
+                opacity3 = 0.015;
+                opacity4 = 0.01;
+                opacity5 = 0.008;
+            } else if (isMobile) {
+                opacity1 = 0.03;
+                opacity2 = 0.02;
+                opacity3 = 0.025;
+                opacity4 = 0.018;
+                opacity5 = 0.015;
+            } else {
+                opacity1 = 0.12;
+                opacity2 = 0.08;
+                opacity3 = 0.10;
+                opacity4 = 0.07;
+                opacity5 = 0.06;
+            }
+            
+            heroBg.style.backgroundImage = `
+                radial-gradient(ellipse 800px 1200px at 20% 50%, rgba(37, 99, 235, ${opacity1}) 0%, rgba(124, 58, 237, ${opacity2}) 40%, transparent 70%),
+                radial-gradient(ellipse 1200px 1800px at 15% 50%, rgba(236, 72, 153, ${opacity3}) 0%, rgba(168, 85, 247, ${opacity4}) 35%, rgba(59, 130, 246, ${opacity5}) 60%, transparent 85%)
+            `;
+        }
+    }
+    
+    parallaxTicking = false;
+};
+
+const requestParallaxTick = () => {
+    if (!parallaxTicking) {
+        requestAnimationFrame(updateParallax);
+        parallaxTicking = true;
+    }
+};
+
+if (heroBg) {
+    window.addEventListener('scroll', requestParallaxTick, { passive: true });
+    // Initialize on load
+    updateParallax();
+}
+
+// ===== SERVICE CARDS SCROLL HIGHLIGHT (MOBILE) =====
+// En móvil, destacar las tarjetas de servicios una a una conforme se hace scroll
+let serviceCardsHighlightInitialized = false;
+let serviceCardsScrollHandler = null;
+let serviceCardsResizeHandler = null;
+
+const initServiceCardsScrollHighlight = () => {
+    // Solo ejecutar en móvil
+    if (window.innerWidth > 768) {
+        // Limpiar si ya estaba inicializado
+        if (serviceCardsHighlightInitialized) {
+            const serviceCards = document.querySelectorAll('#servicios .service-card, #por-que-vertebra .service-card');
+            serviceCards.forEach(card => {
+                card.classList.remove('scroll-highlighted');
+            });
+            if (serviceCardsScrollHandler) {
+                window.removeEventListener('scroll', serviceCardsScrollHandler);
+                serviceCardsScrollHandler = null;
+            }
+            if (serviceCardsResizeHandler) {
+                window.removeEventListener('resize', serviceCardsResizeHandler);
+                serviceCardsResizeHandler = null;
+            }
+            serviceCardsHighlightInitialized = false;
+        }
+        return;
+    }
+    
+    // Evitar múltiples inicializaciones
+    if (serviceCardsHighlightInitialized) {
+        return;
+    }
+    
+    // Buscar tarjetas dentro de las secciones de servicios y "¿Por qué vertebra?"
+    const serviciosSection = document.getElementById('servicios');
+    const porQueVertebraSection = document.getElementById('por-que-vertebra');
+    
+    let serviceCards = [];
+    
+    if (serviciosSection) {
+        const serviciosCards = serviciosSection.querySelectorAll('.service-card');
+        serviceCards = Array.from(serviciosCards);
+    }
+    
+    if (porQueVertebraSection) {
+        const porQueVertebraCards = porQueVertebraSection.querySelectorAll('.service-card');
+        serviceCards = serviceCards.concat(Array.from(porQueVertebraCards));
+    }
+    
+    if (serviceCards.length === 0) {
+        return;
+    }
+    
+    let highlightedCard = null;
+    let ticking = false;
+    
+    const updateHighlightedCard = () => {
+        const viewportCenter = window.innerHeight / 2;
+        let closestCard = null;
+        let minDistance = Infinity;
+        
+        // Encontrar la tarjeta más cercana al centro del viewport
+        serviceCards.forEach(card => {
+            const rect = card.getBoundingClientRect();
+            const cardCenter = rect.top + (rect.height / 2);
+            const distance = Math.abs(cardCenter - viewportCenter);
+            
+            // Solo considerar tarjetas que estén al menos parcialmente visibles
+            if (rect.bottom > 0 && rect.top < window.innerHeight && rect.height > 0) {
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    closestCard = card;
+                }
+            }
+        });
+        
+        // Quitar destacado de la tarjeta anterior
+        if (highlightedCard && highlightedCard !== closestCard) {
+            highlightedCard.classList.remove('scroll-highlighted');
+        }
+        
+        // Aplicar destacado a la nueva tarjeta
+        if (closestCard && closestCard !== highlightedCard) {
+            closestCard.classList.add('scroll-highlighted');
+            highlightedCard = closestCard;
+        } else if (!closestCard && highlightedCard) {
+            // Si no hay ninguna tarjeta visible, quitar el destacado
+            highlightedCard.classList.remove('scroll-highlighted');
+            highlightedCard = null;
+        }
+        
+        ticking = false;
+    };
+    
+    const requestUpdate = () => {
+        if (!ticking) {
+            requestAnimationFrame(updateHighlightedCard);
+            ticking = true;
+        }
+    };
+    
+    // Guardar referencia al handler para poder limpiarlo
+    serviceCardsScrollHandler = requestUpdate;
+    
+    // Actualizar en scroll
+    window.addEventListener('scroll', serviceCardsScrollHandler, { passive: true });
+    
+    // Actualizar inicialmente
+    updateHighlightedCard();
+    
+    // Limpiar cuando cambie el tamaño de la ventana
+    let resizeTimeout;
+    serviceCardsResizeHandler = () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            if (window.innerWidth > 768) {
+                // Si cambia a desktop, quitar todos los destacados y limpiar
+                const allServiceCards = document.querySelectorAll('#servicios .service-card, #por-que-vertebra .service-card');
+                allServiceCards.forEach(card => {
+                    card.classList.remove('scroll-highlighted');
+                });
+                highlightedCard = null;
+                if (serviceCardsScrollHandler) {
+                    window.removeEventListener('scroll', serviceCardsScrollHandler);
+                    serviceCardsScrollHandler = null;
+                }
+                if (serviceCardsResizeHandler) {
+                    window.removeEventListener('resize', serviceCardsResizeHandler);
+                    serviceCardsResizeHandler = null;
+                }
+                serviceCardsHighlightInitialized = false;
+            } else {
+                // Si sigue en móvil, actualizar el destacado
+                updateHighlightedCard();
+            }
+        }, 250);
+    };
+    
+    window.addEventListener('resize', serviceCardsResizeHandler, { passive: true });
+    
+    serviceCardsHighlightInitialized = true;
+};
+
+// Inicializar cuando el DOM esté listo
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initServiceCardsScrollHighlight);
+} else {
+    initServiceCardsScrollHighlight();
+}
+
+// ===== PROJECT CARDS SCROLL HIGHLIGHT (MOBILE) =====
+// En móvil, activar efectos de hover de las tarjetas de proyectos con scroll
+const initProjectCardsScrollHighlight = () => {
+    // Solo ejecutar en móvil
+    if (window.innerWidth > 768) {
+        return;
+    }
+    
+    const projectCards = document.querySelectorAll('.grid-3 .card-link, .grid-2 .card-link');
+    
+    if (projectCards.length === 0) {
+        return;
+    }
+    
+    let highlightedCard = null;
+    let ticking = false;
+    
+    const updateHighlightedCard = () => {
+        const viewportCenter = window.innerHeight / 2;
+        let closestCard = null;
+        let minDistance = Infinity;
+        
+        // Encontrar la tarjeta más cercana al centro del viewport
+        projectCards.forEach(card => {
+            const rect = card.getBoundingClientRect();
+            const cardCenter = rect.top + (rect.height / 2);
+            const distance = Math.abs(cardCenter - viewportCenter);
+            
+            // Solo considerar tarjetas que estén al menos parcialmente visibles
+            if (rect.bottom > 0 && rect.top < window.innerHeight) {
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    closestCard = card;
+                }
+            }
+        });
+        
+        // Quitar destacado de la tarjeta anterior
+        if (highlightedCard && highlightedCard !== closestCard) {
+            highlightedCard.classList.remove('scroll-highlighted');
+        }
+        
+        // Aplicar destacado a la nueva tarjeta
+        if (closestCard && closestCard !== highlightedCard) {
+            closestCard.classList.add('scroll-highlighted');
+            highlightedCard = closestCard;
+        }
+        
+        ticking = false;
+    };
+    
+    const requestUpdate = () => {
+        if (!ticking) {
+            requestAnimationFrame(updateHighlightedCard);
+            ticking = true;
+        }
+    };
+    
+    // Actualizar en scroll
+    window.addEventListener('scroll', requestUpdate, { passive: true });
+    
+    // Actualizar inicialmente
+    updateHighlightedCard();
+    
+    // Limpiar cuando cambie el tamaño de la ventana
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            if (window.innerWidth > 768) {
+                // Si cambia a desktop, quitar todos los destacados
+                projectCards.forEach(card => {
+                    card.classList.remove('scroll-highlighted');
+                });
+                highlightedCard = null;
+            } else {
+                // Si sigue en móvil, actualizar el destacado
+                updateHighlightedCard();
+            }
+        }, 250);
+    }, { passive: true });
+};
+
+// Inicializar cuando el DOM esté listo
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initProjectCardsScrollHighlight);
+} else {
+    initProjectCardsScrollHighlight();
+}
 
 console.log('Vertebra Studio - Landing page loaded successfully! 🚀');
